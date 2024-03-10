@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Dinâmica</title>
+</head>
+<body>
+    <h1>Lista Dinâmica</h1>
+    <form id="myForm">
+        <label for="inputValue">Digite um valor:</label>
+        <input type="text" id="inputValue">
+        <button type="button" onclick="addValue()">Adicionar</button>
+    </form>
+    <ol id="valueList"></ol>
+
+    <script>
+        const values = []; // Array para armazenar os valores
+
+        function addValue() {
+            const inputValue = document.getElementById("inputValue").value;
+            if (inputValue.trim() !== "") {
+                values.push(inputValue); // Adiciona o valor ao array
+                updateList();
+                document.getElementById("inputValue").value = ""; // Limpa o campo de entrada
+            }
+        }
+
+        function updateList() {
+            const sortedValues = values.slice().sort(); // Cria uma cópia ordenada do array
+            const listElement = document.getElementById("valueList");
+            listElement.innerHTML = ""; // Limpa a lista antes de atualizar
+
+            sortedValues.forEach((value) => {
+                const listItem = document.createElement("li");
+                listItem.textContent = value;
+                listElement.appendChild(listItem);
+            });
+        }
+    </script>
+</body>
+</html>
